@@ -29,3 +29,18 @@ const closeModal = function () {
   overlayEl.classList.add('hidden');
   if (lastFocusedButton) lastFocusedButton.focus();
 };
+
+btnsOpenModalEl.forEach(btn => btn.addEventListener('click', openModal));
+btnCloseModalEl.addEventListener('click', closeModal);
+overlayEl.addEventListener('click', closeModal);
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modalEl.classList.contains('hidden')) {
+    closeModal();
+  }
+});
+
+modalEl.setAttribute(`role`, `dialog`);
+modalEl.setAttribute(`aria-modal`, `true`);
+
+btnCloseModalEl.setAttribute(`aria-label`, `Close modal`);
